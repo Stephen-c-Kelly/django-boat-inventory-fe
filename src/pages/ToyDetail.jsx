@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
-import { getToy } from "../services/toys.js";
+import { useParams, useNavigate } from "react-router-dom";
+import { getToy, deleteToy } from "../services/toys.js";
 
 function ToyDetail() {
   const [toyDetail, setToyDetail] = useState({});
 
   let { toyId } = useParams();
+  let navigate = useNavigate();
 
   useEffect(() => {
     const fetchToy = async () => {
@@ -16,6 +17,11 @@ function ToyDetail() {
     fetchToy();
   }, [toyId]);
 
+  const handleToyDelete = async () => {
+    await deleteToy(toyId)
+    navigate("/toys")
+  }
+
   return (
     <div className='toy-root-container'>
       <div className="toy" style={{ background: toyDetail.color }}>
@@ -24,7 +30,7 @@ function ToyDetail() {
       </div>
       <div>
         <button className="toy-detail-edit">Edit</button>
-        <button className="toy-detail-delete">Delete</button>
+        <button className="toy-detail-delete" onClick={handleToyDelete}>Delete</button>
       </div>
     </div>
   )
