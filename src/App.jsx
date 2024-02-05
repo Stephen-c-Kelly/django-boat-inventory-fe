@@ -3,6 +3,7 @@ import { verifyUser } from './services/users.js'
 import Nav from './components/Nav'
 import Home from './pages/Home'
 import Register from './pages/Register'
+import SignOut from './pages/SignOut.jsx'
 import Cats from './pages/Cats'
 import CatDetail from './pages/CatDetail'
 import CreateCat from './pages/CreateCat'
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home setUser={setUser} />} />
         <Route path="/register" element={<Register setUser={setUser} />} />
+        <Route path="/sign-out" element={<SignOut setUser={setUser} />} />
         <Route path="/cats" element={<Cats />} />
         <Route path="/cats/add" element={<CreateCat />} />
         <Route path="/cats/:catId/edit" element={<EditCat />} />

@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getCat } from "../services/cats.js";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { getCat, deleteCat } from "../services/cats.js";
 import catDetailAvatar from "../assets/cat-detail.png";
 
 function CatDetail() {
   const [catDetail, setCatDetail] = useState({});
 
   let { catId } = useParams();
+  let navigate = useNavigate()
 
   useEffect(() => {
     const fetchCat = async () => {
@@ -16,6 +17,11 @@ function CatDetail() {
 
     fetchCat();
   }, [catId]);
+
+  const handleDelete = async () => {
+    await deleteCat(catId)
+    navigate('/cats')
+  }
 
   // [TBU] Add Feedings Table
   // [TBU] Add Toys Table
@@ -34,7 +40,7 @@ function CatDetail() {
             <Link to={`/cats/${catDetail?.cat?.id}/edit`}>
               <button className="cat-detail-edit">Edit</button>
             </Link>
-            <button className="cat-detail-delete">Delete</button>
+            <button className="cat-detail-delete" onClick={handleDelete}>Delete</button>
           </div>
         </div>
       </div>
