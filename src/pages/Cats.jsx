@@ -16,7 +16,7 @@ function Cats() {
     fetchCats()
   }, [])
 
-  if (!cats.length) return <h1>loading...</h1>
+  if (!cats.length) return <h1 style={{textAlign: "center"}}>Make sure to add some cats!</h1>
 
   return (
     <div className='cats-root'>

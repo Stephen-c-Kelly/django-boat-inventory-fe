@@ -11,7 +11,7 @@ export const getCatFeedings = async (id) => {
 
 export const addCatFeeding = async (id, feedingData) => {
   try {
-    const response = await api.get(`/cats/${id}/feedings/`, feedingData);
+    const response = await api.post(`/cats/${id}/feedings/`, feedingData);
     return response.data;
   } catch (error) {
     throw error;
