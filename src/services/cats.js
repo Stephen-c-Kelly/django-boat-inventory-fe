@@ -1,5 +1,23 @@
 import api from "./apiConfig.js";
 
+export const getBoats = async () => {
+  try {
+    const response = await api.get("/boats/");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getBoat = async (id) => {
+  try {
+    const response = await api.get(`/boats/${id}/`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getCats = async () => {
   try {
     const response = await api.get("/cats/");
